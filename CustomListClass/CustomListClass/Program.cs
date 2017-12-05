@@ -10,6 +10,11 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
+            CustomList<int> nums = new CustomList<int>();
+
+            nums.Add(1);
+            nums.Add(2);
+            nums.Add(3);
         }
     }
 }
