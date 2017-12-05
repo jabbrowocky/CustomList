@@ -47,7 +47,24 @@ namespace CustomListClass
         //methods
         public void Add(T toAdd)
         {
+            if (Count > (capacity / 2))
+            {
+                AddHelper();
+            }
+            indexArray[count] = toAdd;
+            count++;
+        
+        }
+        private void AddHelper()
+        {
+            T[] shiftArray = new T[capacity+capacity];
             
+            for (int i = 1; i < Count; i++)
+            {
+                shiftArray[i] = indexArray[i];
+            }
+            indexArray = shiftArray;
+                        
         }
         public void Remove()
         {

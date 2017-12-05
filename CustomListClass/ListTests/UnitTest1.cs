@@ -19,18 +19,18 @@ namespace ListTests
             testList.Add(numberToAdd);
             // Assert
             // does the array contain addition?
-            Assert.Equals(testList[0], numberToAdd);
+            Assert.AreEqual(testList[0], numberToAdd);
         }
         [TestMethod]
         public void Add_DoesCountIncrease_CountIsCorrect()
         {
             // Arrange
-            CustomList<string> testList = new CustomList<string>;
+            CustomList<string> testList = new CustomList<string>();
             string countMattersHere = "whatever";
             // Act
             testList.Add(countMattersHere);
             // Assert
-            Assert.Equals(testList.Count, 1);
+            Assert.AreEqual(testList.Count, 1);
 
         }
         [TestMethod]
@@ -65,7 +65,7 @@ namespace ListTests
             testList.Add(firstWord);
             testList.Add(secondWord);
             //Assert
-            Assert.Equals(testList[1], "World");
+            Assert.AreEqual(testList[1], "World");
         }
         [TestMethod]
         public void Add_DoIndecesContainProperValues_MiddleValueCheck()
@@ -82,9 +82,52 @@ namespace ListTests
             testList.Add(secondWord);
             testList.Add(thirdWord);
             //Assert
-            Assert.Equals(testList[1], "This");
+            Assert.AreEqual(testList[1], "This");
         }
-        
+        [TestMethod]
+        public void Add_DoesListSizeShift_AddingSixValues()
+        {
+            // Arrange
+            CustomList<int> testList = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 2;
+            int thirdNumber = 5;
+            int fourthNumber = 3;
+            int fifthNumber = 7;
+            int sixthNumber = 25;
+
+            // Act 
+            testList.Add(firstNumber);
+            testList.Add(secondNumber);
+            testList.Add(thirdNumber);
+            testList.Add(fourthNumber);
+            testList.Add(fifthNumber);
+            testList.Add(sixthNumber);
+            // Assert
+            Assert.AreEqual(testList[5], 25);
+        }
+        [TestMethod]
+        public void Add_DoesCountMatch_AddingSixValues()
+        {
+            // Arrange
+            CustomList<int> testList = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 2;
+            int thirdNumber = 5;
+            int fourthNumber = 3;
+            int fifthNumber = 7;
+            int sixthNumber = 25;
+
+            // Act 
+            testList.Add(firstNumber);
+            testList.Add(secondNumber);
+            testList.Add(thirdNumber);
+            testList.Add(fourthNumber);
+            testList.Add(fifthNumber);
+            testList.Add(sixthNumber);
+            // Assert
+            Assert.AreEqual(testList.Count, 6);
+        }
 
     }
 }
