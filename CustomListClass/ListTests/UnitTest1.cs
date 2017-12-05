@@ -7,6 +7,7 @@ namespace ListTests
     [TestClass]
     public class UnitTest1
     {
+        // .Add() tests
         [TestMethod]
         public void Add_DoesItAdd_ContainsAddition()
         {
@@ -128,6 +129,35 @@ namespace ListTests
             // Assert
             Assert.AreEqual(testList.Count, 6);
         }
+        //.Remove() tests
+        [TestMethod]
+        public void Remove_DoesIndexMatch_RemovingAValue()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "word one";
+            string secondAddition = "word two";
 
+            // Act
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Remove(firstAddition);
+            // Assert
+            Assert.AreEqual(testList[0], secondAddition);
+        }
+        [TestMethod]
+        public void Remove_DoesCountDecrease_RemovingAnIndex()
+        {
+            //Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "word one";
+            string secondAddition = "word two";
+            //Act
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Remove(firstAddition);
+            //Assert
+            Assert.AreEqual(testList.Count, 1);
+        }        
     }
 }
