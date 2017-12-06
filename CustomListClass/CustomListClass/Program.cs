@@ -10,7 +10,9 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            
+            CustomList<int> listy = new CustomList<int>() { 1, 2, 3 };
+            Console.WriteLine(listy.ToString());
+            Console.ReadKey();
         }
     }
 }

@@ -46,21 +46,33 @@ namespace CustomListClass
             indexArray = new T[capacity];
         }
         //methods
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                yield return indexArray[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
         public void Add(T toAdd)
         {
             if (Count > (capacity / 2))
             {
-                AddHelper();
+                IncreaseInternalArraySize();
             }
             indexArray[count] = toAdd;
             count++;
         
         }
-        private void AddHelper()
+        private void IncreaseInternalArraySize()
         {
             T[] shiftArray = new T[capacity+capacity];
             
-            for (int i = 0; i < this.Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 shiftArray[i] = indexArray[i];
             }
@@ -89,18 +101,22 @@ namespace CustomListClass
             }
         }
 
-
-        public IEnumerator<T> GetEnumerator()
+        public override string ToString()
         {
-            for(int i = 0; i < Count; i++)
+            string stringOutcome = "";
+            for (int i = 0; i < Count; i ++)
             {
-                yield return indexArray[i];
+                if (i == Count - 1)
+                {
+                    stringOutcome += indexArray[i].ToString();
+                }
+                else
+                {
+                    stringOutcome += indexArray[i].ToString() + ", ";
+                }
             }
+            return stringOutcome;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
     }
 }

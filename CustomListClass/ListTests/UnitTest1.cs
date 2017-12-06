@@ -290,6 +290,33 @@ namespace ListTests
             }
             //Assert
             Assert.IsTrue(objectList.Count == testList.Count);
+
+        }
+        [TestMethod]
+        public void ToString_PositiveIntegers_StringEquivalencyResults()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>() { 1, 2, 3 };
+            string stringResult = "1, 2, 3";
+            string listString;
+            //Act
+            listString = testList.ToString();
+            //Assert
+            Assert.AreEqual(stringResult, listString);
+        }
+        [TestMethod]
+        public void ToString_Bools_StringEquivalencyResults()
+        {
+            //Arrange
+            bool isTrue = true;
+            bool isFalse = false;
+            CustomList<bool> testList = new CustomList<bool>() { isTrue, isFalse, isFalse};
+            string stringResult = "True, False, False";
+            string listString;
+            //Act
+            listString = testList.ToString();
+            //Assert
+            Assert.AreEqual(stringResult, listString);
         }
     }
 }
