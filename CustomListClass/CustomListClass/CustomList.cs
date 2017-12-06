@@ -60,26 +60,47 @@ namespace CustomListClass
         {
             T[] shiftArray = new T[capacity+capacity];
             
-            for (int i = 1; i < Count; i++)
+            for (int i = 0; i < this.Count; i++)
             {
                 shiftArray[i] = indexArray[i];
             }
             indexArray = shiftArray;
                         
         }
-        public void Remove(T toRemove)
+        public bool Remove(T toRemove)
         {
-
+            for (int i = 0; i < Count; i++)
+            {
+                if (indexArray[i].Equals(toRemove))
+                {
+                    count--;
+                    ShiftValues(i);
+                    return true;
+                }
+                
+            }
+            return false;
         }
+        private void ShiftValues(int indexNumber)
+        {
+            for (int i = indexNumber; i < Count; i ++ )
+            {
+                indexArray[i] = indexArray[i + 1];
+            }
+        }
+
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < Count; i++)
+            {
+                yield return indexArray[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.GetEnumerator();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ListTests
             // Act
             // test add function
             testList.Add(numberToAdd);
+            
             // Assert
             // does the array contain addition?
             Assert.AreEqual(testList[0], numberToAdd);
@@ -158,6 +159,137 @@ namespace ListTests
             testList.Remove(firstAddition);
             //Assert
             Assert.AreEqual(testList.Count, 1);
-        }        
+        }
+        [TestMethod]
+        public void Remove_DoMiddleIndecesShift_RemovingIndex()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "hi";
+            string secondAddition = "you";
+            string thirdAddition = "foo";
+            string fourthAddition = "thru";
+            // Act
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Add(thirdAddition);
+            testList.Add(fourthAddition);
+            testList.Remove(secondAddition);
+            // Assert
+            Assert.AreEqual(testList[1], thirdAddition);
+        }
+        [TestMethod]
+        public void Remove_DoesArrayChangeSize_RemovingIndex()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "hi";
+            string secondAddition = "you";
+            string thirdAddition = "foo";
+            string fourthAddition = "thru";
+            // Act
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Add(thirdAddition);
+            testList.Add(fourthAddition);
+            testList.Remove(secondAddition);
+            // Assert
+            Assert.AreEqual(testList.Count, 3);
+
+        }
+        [TestMethod]
+        public void Remove_DoesFalseValueFlag_NonexistantIndex()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "hi";
+            string secondAddition = "you";
+            string thirdAddition = "foo";
+            string fourthAddition = "thru";
+            string cheese = "cheese";
+            bool arrayBool;
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Add(thirdAddition);
+            testList.Add(fourthAddition);
+            // Act
+            arrayBool = testList.Remove(cheese);
+            // Assert
+            Assert.IsFalse(arrayBool);
+
+        }
+        [TestMethod]
+        public void Remove_DoesCountRemainSame_ItemNotInIndex()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "hi";
+            string secondAddition = "you";
+            string thirdAddition = "foo";
+            string fourthAddition = "thru";
+            string cheese = "cheese";
+
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Add(thirdAddition);
+            testList.Add(fourthAddition);
+            // Act
+            testList.Remove(cheese);
+            // Assert
+            Assert.AreEqual(testList.Count, 4);
+
+
+        }
+        [TestMethod]
+        public void Remove_TrueReturnOnSuccessfulRemoval_IndexPresentInArray()
+        {
+            // Arrange
+            CustomList<string> testList = new CustomList<string>();
+            string firstAddition = "hi";
+            string secondAddition = "you";
+            string thirdAddition = "foo";
+            string fourthAddition = "thru";
+            string cheese = "cheese";
+            bool arrayBool;
+            testList.Add(firstAddition);
+            testList.Add(secondAddition);
+            testList.Add(thirdAddition);
+            testList.Add(fourthAddition);
+            // Act
+            arrayBool = testList.Remove(secondAddition);
+            // Assert
+            Assert.IsTrue(arrayBool);
+        }
+        //IEnumerable test
+        [TestMethod]
+        public void Ienumerable_DoesItForeach_ImplementForeachLoop ()
+        {
+            //Arrange
+            CustomList<string> enumTest = new CustomList<string>() { "1", "2", "3" };
+            CustomList<string> enumCompare = new CustomList<string>();
+            //Act
+            foreach (string element in enumTest)
+            {
+                enumCompare.Add(element);
+            }
+            //Assert
+            Assert.AreEqual(enumTest[1], enumCompare[1]);
+        }
+        [TestMethod]
+        public void Ienumerable_DoesItForeachObjects_TestingCount()
+        {
+            //Arrange
+        
+            CustomList <Test> testList = new CustomList<Test>() { new Test(), new Test(), new Test()};
+            CustomList<Object> objectList = new CustomList<Object>();
+            //Act
+            foreach (Test element in testList)
+            {
+                
+                objectList.Add(element);
+            }
+            //Assert
+            Assert.IsTrue(objectList.Count == testList.Count);
+        }
     }
 }
