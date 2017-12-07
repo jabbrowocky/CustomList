@@ -28,11 +28,20 @@ namespace CustomListClass
                 {
                     throw new IndexOutOfRangeException();
                 }
+                else if (i < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
                 return index[i];
             }
             set
             {
                 if (i > count)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else if (i < 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
