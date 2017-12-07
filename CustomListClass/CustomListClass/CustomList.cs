@@ -161,12 +161,22 @@ namespace CustomListClass
         public CustomList<T> Zip(CustomList<T> ZipCombiner)
         {
             CustomList<T> zippedTogether = new CustomList<T>();
-            for (int i = 0; i < count; i++)
+            int zipCount;
+            if (this.Count > ZipCombiner.Count)
+            {
+                zipCount = ZipCombiner.Count;
+            }
+            else
+            {
+                zipCount = this.Count;
+            }
+            for (int i = 0; i < zipCount; i++)
             {
                 zippedTogether.Add(this[i]);
                 zippedTogether.Add(ZipCombiner[i]);
             }
             return zippedTogether;
         }
+        
     }
 }
