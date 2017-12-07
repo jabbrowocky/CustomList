@@ -129,6 +129,34 @@ namespace CustomListClass
             }
             return false;
         }
-        
+        public static CustomList<T> operator +(CustomList<T>firstList,CustomList<T>secondList)
+        {
+            CustomList<T> resultList = new CustomList<T>();
+            foreach(T element in firstList)
+            {
+                resultList.Add(element);
+            }
+            foreach(T element in secondList)
+            {
+                resultList.Add(element);
+            }
+            return resultList;
+        }
+        public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> resultList = new CustomList<T>();
+            foreach (T element in firstList)
+            {
+                if (secondList.Contains(element))
+                {
+                    firstList.Remove(element);
+                }
+                else
+                {
+                    resultList.Add(element);
+                }
+            }
+            return resultList;
+        }
     }
 }

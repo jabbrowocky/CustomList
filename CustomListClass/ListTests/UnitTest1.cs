@@ -369,6 +369,60 @@ namespace ListTests
             Assert.IsTrue(result);
         }
         //overloaded + operator tests
+        [TestMethod]
+        public void PlusOperator_AddingIntList_ListContainsBothSetsOfInts()
+        {
+            //Arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> secondHalf = new CustomList<int>() { 4, 5, 6 };          
+            CustomList<int> result = new CustomList<int>();
+           
+            //Act
+            result = firstHalf + secondHalf;
+            //Assert
+            Assert.AreEqual(secondHalf[1], result[4]);
+        }
+        [TestMethod]
+        public void PlusOperator_AddingStringList_ListContainsBothSetsOfStrings()
+        {
+            //Arrange
+            CustomList<string> firstHalf = new CustomList<string>() { "hi", "world"};
+            CustomList<string> secondHalf = new CustomList<string>() { "it's", "me", "margaret" };
+          
+            CustomList<string> result = new CustomList<string>();
+           
+            //Act
+            result = firstHalf + secondHalf;
 
+            //Assert
+            Assert.AreEqual(secondHalf[2], result[4]);
+        }
+        //overloaded - operator tests
+        [TestMethod]
+        public void MinusOperator_SubtractingIntList_NewListContainsFirstListUnlikeValues()
+        {
+            //Arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> secondHalf = new CustomList<int>() { 1,2,6 };
+            CustomList<int> result;
+            //Act
+            result = firstHalf - secondHalf;
+
+            //Assert
+            Assert.AreEqual(result[0], 3);
+        }
+        [TestMethod]
+        public void MinusOperator_SubtractingIntList_NewListEmpty()
+        {
+            //Arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> secondHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> result = new CustomList<int>();
+            //Act
+            result = firstHalf - secondHalf;
+
+            //Assert
+            Assert.IsTrue(result.Count==0);
+        }
     }
 }
