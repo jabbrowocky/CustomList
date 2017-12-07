@@ -162,14 +162,7 @@ namespace CustomListClass
         {
             CustomList<T> zippedTogether = new CustomList<T>();
             int zipCount;
-            if (this.Count > ZipCombiner.Count)
-            {
-                zipCount = ZipCombiner.Count;
-            }
-            else
-            {
-                zipCount = this.Count;
-            }
+            zipCount = ZipHelper(ZipCombiner);
             for (int i = 0; i < zipCount; i++)
             {
                 zippedTogether.Add(this[i]);
@@ -177,6 +170,19 @@ namespace CustomListClass
             }
             return zippedTogether;
         }
-        
+        public int ZipHelper(CustomList<T> ZipCombiner)
+        {
+            int zipCount;
+            if (count > ZipCombiner.Count)
+            {
+                zipCount = ZipCombiner.Count;
+                return zipCount;
+            }
+            else
+            {
+                zipCount = count;
+                return zipCount;
+            }
+        }
     }
 }
