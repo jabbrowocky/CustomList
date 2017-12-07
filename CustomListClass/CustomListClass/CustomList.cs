@@ -32,7 +32,6 @@ namespace CustomListClass
                 {
                     throw new IndexOutOfRangeException();
                 }
-
                 return index[i];
             }
             set
@@ -62,7 +61,6 @@ namespace CustomListClass
                 yield return index[i];
             }
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
@@ -74,19 +72,16 @@ namespace CustomListClass
                 IncreaseInternalArraySize();
             }
             index[count] = toAdd;
-            count++;
-        
+            count++;        
         }
         private void IncreaseInternalArraySize()
         {
-            T[] capacityIncrease = new T[capacity+capacity];
-            
+            T[] capacityIncrease = new T[capacity+capacity];            
             for (int i = 0; i < count; i++)
             {
                 capacityIncrease[i] = index[i];
             }
-            index = capacityIncrease;
-                        
+            index = capacityIncrease;                        
         }
         public bool Remove(T toRemove)
         {
@@ -97,11 +92,10 @@ namespace CustomListClass
                     count--;
                     ShiftValues(i);
                     return true;
-                }
-                
+                }                
             }
             return false;
-        }
+        }       
         private void ShiftValues(int indexNumber)
         {
             for (int i = indexNumber; i < count; i ++ )
@@ -109,11 +103,10 @@ namespace CustomListClass
                 index[i] = index[i + 1];
             }
         }
-
         public override string ToString()
         {
             string outcome = "";
-            for (int i = 0; i < count; i ++)
+            for (int i = 0; i < count; i++)
             {
                 if (i == count - 1)
                 {
@@ -133,8 +126,7 @@ namespace CustomListClass
                 if (index[i].Equals(toCheck))
                 {
                     return true;
-                }
-                
+                }                
             }
             return false;
         }
@@ -179,7 +171,7 @@ namespace CustomListClass
             }
             return zippedTogether;
         }
-        public int ZipHelper(CustomList<T> ZipCombiner)
+        private int ZipHelper(CustomList<T> ZipCombiner)
         {
             int zipCount;
             if (count > ZipCombiner.Count)
