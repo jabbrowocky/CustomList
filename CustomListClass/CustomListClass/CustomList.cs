@@ -95,7 +95,7 @@ namespace CustomListClass
         }
         private void ShiftValues(int indexNumber)
         {
-            for (int i = indexNumber; i <count; i ++ )
+            for (int i = indexNumber; i < count; i ++ )
             {
                 index[i] = index[i + 1];
             }
@@ -129,5 +129,6 @@ namespace CustomListClass
             }
             return false;
         }
+        
     }
 }

@@ -330,6 +330,19 @@ namespace ListTests
             //Assert
             Assert.IsFalse(result);
         }
+        //Contains method tests
+        [TestMethod]
+        public void Contains_ListDoesNotContainInteger_ReturnsFalse()
+        {
+            //Arrange
+            CustomList<int> listOfIntegers = new CustomList<int>() { 1, 2, 3, 4 };
+            int testNumber = 27;
+            bool result;
+            //Act
+            result = listOfIntegers.Contains(testNumber);
+            //Assert
+            Assert.IsFalse(result);
+        }
         [TestMethod]
         public void Contains_ListContainsString_ReturnsTrue()
         {
@@ -355,5 +368,7 @@ namespace ListTests
             //Assert
             Assert.IsTrue(result);
         }
+        //overloaded + operator tests
+
     }
 }
