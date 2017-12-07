@@ -297,7 +297,7 @@ namespace ListTests
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>() { 1, 2, 3 };
-            string stringResult = "1, 2, 3";
+            string stringResult = "1 2 3";
             string listString;
             //Act
             listString = testList.ToString();
@@ -311,7 +311,7 @@ namespace ListTests
             bool isTrue = true;
             bool isFalse = false;
             CustomList<bool> testList = new CustomList<bool>() { isTrue, isFalse, isFalse};
-            string stringResult = "True, False, False";
+            string stringResult = "True False False";
             string listString;
             //Act
             listString = testList.ToString();
@@ -417,12 +417,58 @@ namespace ListTests
             //Arrange
             CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
             CustomList<int> secondHalf = new CustomList<int>() { 1, 2, 3 };
-            CustomList<int> result = new CustomList<int>();
+            CustomList<int> result;
             //Act
             result = firstHalf - secondHalf;
 
             //Assert
             Assert.IsTrue(result.Count==0);
         }
+        //zip method tests
+        [TestMethod]
+        public void Zip_CombiningIntLists_NewListHasDuplicateValues()
+        {
+            //Arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> secondHalf = new CustomList<int>() { 1, 2, 3 };
+            CustomList<int> result;
+            //Act
+            result = firstHalf.Zip(secondHalf);
+
+            //Assert
+            Assert.IsTrue(result[1] == result[0]);
+        }
+        [TestMethod]
+        public void Zip_CombiningStringLists_IndecesAlternate()
+        {
+            //Arrange
+            CustomList<string> firstHalf = new CustomList<string>() { "Hello", "I'm", "what's" };
+            CustomList<string> secondHalf = new CustomList<string>() { "world", "John", "up?" };
+            CustomList<string> result;
+            string sentence;
+            //Act
+            result = firstHalf.Zip(secondHalf);
+            sentence = result.ToString();
+            //Assert
+            Assert.IsTrue(sentence == "Hello world I'm John what's up?");
+        }
+        [TestMethod]
+        public void Zip_AlternateCombiningStringLists_IndecesAlternate()
+        {
+            //Arrange
+            CustomList<string> firstHalf = new CustomList<string>() { "Hello ", "I'm ", "what's " };
+            CustomList<string> secondHalf = new CustomList<string>() { "world ", "John ", "up?" };
+            CustomList<string> result;
+            string sentence="";
+            //Act
+            result = firstHalf.Zip(secondHalf);
+            for (int i = 0; i < result.Count; i++)
+            {
+                sentence += result[i].ToString();
+            }
+            //Assert
+            Assert.IsTrue(sentence == "Hello world I'm John what's up?");
+        }
+        
     }
 }

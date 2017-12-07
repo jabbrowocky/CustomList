@@ -106,13 +106,13 @@ namespace CustomListClass
             string outcome = "";
             for (int i = 0; i < count; i ++)
             {
-                if (i == Count - 1)
+                if (i == count - 1)
                 {
                     outcome += index[i].ToString();
                 }
                 else
                 {
-                    outcome += index[i].ToString() + ", ";
+                    outcome += index[i].ToString() + " ";
                 }
             }
             return outcome;
@@ -129,7 +129,7 @@ namespace CustomListClass
             }
             return false;
         }
-        public static CustomList<T> operator +(CustomList<T>firstList,CustomList<T>secondList)
+        public static CustomList<T> operator +(CustomList<T>firstList, CustomList<T>secondList)
         {
             CustomList<T> resultList = new CustomList<T>();
             foreach(T element in firstList)
@@ -149,7 +149,7 @@ namespace CustomListClass
             {
                 if (secondList.Contains(element))
                 {
-                    firstList.Remove(element);
+                    continue;
                 }
                 else
                 {
@@ -157,6 +157,16 @@ namespace CustomListClass
                 }
             }
             return resultList;
+        }
+        public CustomList<T> Zip(CustomList<T> ZipCombiner)
+        {
+            CustomList<T> zippedTogether = new CustomList<T>();
+            for (int i = 0; i < count; i++)
+            {
+                zippedTogether.Add(this[i]);
+                zippedTogether.Add(ZipCombiner[i]);
+            }
+            return zippedTogether;
         }
     }
 }
