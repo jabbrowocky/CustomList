@@ -10,9 +10,17 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            CustomList<int> listy = new CustomList<int>() { 1, 2, 3 };
+            CustomList<bool> listy = new CustomList<bool>() { true, false, false };
             Console.WriteLine(listy.ToString());
-            Console.ReadKey();
+            Console.WriteLine(listy.Count);
+            listy.Remove(false);
+            Console.WriteLine(listy.ToString());
+            Console.WriteLine(listy.Count);
+            listy.Remove(true);
+            Console.WriteLine(listy.ToString());
+            Console.WriteLine(listy.Count);
+            Console.WriteLine(listy.Contains(true));
+                Console.ReadKey();
         }
     }
 }

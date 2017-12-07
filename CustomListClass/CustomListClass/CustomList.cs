@@ -12,7 +12,7 @@ namespace CustomListClass
         //member variables
         int count;
         int capacity;
-        private T[] indexArray;
+        private T[] index;
         public int Count
         {
             get
@@ -28,7 +28,7 @@ namespace CustomListClass
                 {
                     throw new IndexOutOfRangeException();
                 }
-                return indexArray[i];
+                return index[i];
             }
             set
             {
@@ -36,21 +36,21 @@ namespace CustomListClass
                 {
                     throw new IndexOutOfRangeException();
                 }
-                indexArray[i] = value;
+                index[i] = value;
             }
         }
         //ctor
         public CustomList()
         {
             capacity = 5;
-            indexArray = new T[capacity];
+            index = new T[capacity];
         }
         //methods
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                yield return indexArray[i];
+                yield return index[i];
             }
         }
 
@@ -60,30 +60,30 @@ namespace CustomListClass
         }
         public void Add(T toAdd)
         {
-            if (Count > (capacity / 2))
+            if (count > (capacity / 2))
             {
                 IncreaseInternalArraySize();
             }
-            indexArray[count] = toAdd;
+            index[count] = toAdd;
             count++;
         
         }
         private void IncreaseInternalArraySize()
         {
-            T[] shiftArray = new T[capacity+capacity];
+            T[] capacityIncrease = new T[capacity+capacity];
             
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                shiftArray[i] = indexArray[i];
+                capacityIncrease[i] = index[i];
             }
-            indexArray = shiftArray;
+            index = capacityIncrease;
                         
         }
         public bool Remove(T toRemove)
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                if (indexArray[i].Equals(toRemove))
+                if (index[i].Equals(toRemove))
                 {
                     count--;
                     ShiftValues(i);
@@ -95,28 +95,39 @@ namespace CustomListClass
         }
         private void ShiftValues(int indexNumber)
         {
-            for (int i = indexNumber; i < Count; i ++ )
+            for (int i = indexNumber; i <count; i ++ )
             {
-                indexArray[i] = indexArray[i + 1];
+                index[i] = index[i + 1];
             }
         }
 
         public override string ToString()
         {
-            string stringOutcome = "";
-            for (int i = 0; i < Count; i ++)
+            string outcome = "";
+            for (int i = 0; i < count; i ++)
             {
                 if (i == Count - 1)
                 {
-                    stringOutcome += indexArray[i].ToString();
+                    outcome += index[i].ToString();
                 }
                 else
                 {
-                    stringOutcome += indexArray[i].ToString() + ", ";
+                    outcome += index[i].ToString() + ", ";
                 }
             }
-            return stringOutcome;
+            return outcome;
         }
-
+        public bool Contains(T toCheck)
+        {
+            for (int i = 0; i < count; i ++)
+            {
+                if (index[i].Equals(toCheck))
+                {
+                    return true;
+                }
+                
+            }
+            return false;
+        }
     }
 }

@@ -249,7 +249,7 @@ namespace ListTests
             string secondAddition = "you";
             string thirdAddition = "foo";
             string fourthAddition = "thru";
-            string cheese = "cheese";
+            
             bool arrayBool;
             testList.Add(firstAddition);
             testList.Add(secondAddition);
@@ -317,6 +317,43 @@ namespace ListTests
             listString = testList.ToString();
             //Assert
             Assert.AreEqual(stringResult, listString);
+        }
+        [TestMethod]
+        public void Contains_ListDoesNotContainString_ReturnsFalse()
+        {
+            //Arrange
+            CustomList<string> pleaseWork = new CustomList<string>() { "hello", "world", "this", "exists" };
+            string testWord = "chartreuse";
+            bool result = false;
+            //Act
+            result = pleaseWork.Contains(testWord);
+            //Assert
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void Contains_ListContainsString_ReturnsTrue()
+        {
+            //Arrange
+            CustomList<string> pleaseWork = new CustomList<string>() { "hello", "world", "this", "exists" };
+            string testWord = "this";
+            bool result = false;
+            //Act
+            result = pleaseWork.Contains(testWord);
+            //Assert
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void Contains_ListContainsObject_ReturnsTrue()
+        {
+            Test testy = new Test();
+            Test hopey = new Test();
+            //Arrange
+            CustomList<Test> objectList = new CustomList<Test>() {testy, hopey, testy };
+            bool result = false;
+            //Act
+            result = objectList.Contains(hopey);
+            //Assert
+            Assert.IsTrue(result);
         }
     }
 }
