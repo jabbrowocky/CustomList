@@ -11,14 +11,7 @@ namespace CustomListClass
         static void Main(string[] args)
         {
             
-            //arrange
-            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
-            //act
-            firstHalf.RemoveAt(1);
-            //Assert
-            Console.WriteLine(firstHalf);
-            Console.WriteLine(firstHalf.Count);
-            Console.ReadKey();
+            
         
         }   
     }
