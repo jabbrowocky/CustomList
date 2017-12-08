@@ -9,6 +9,21 @@ namespace ListTests
     {
         // .Add() tests
         [TestMethod]
+        public void Add_AddFourIntegers_IntegerIsPresent()
+        {
+            //arrange
+            CustomList<int> list = new CustomList<int>();
+            int test = 4;
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+            //act
+
+            //assert
+            Assert.AreEqual(test, list[2]);
+        }
+        [TestMethod]
         public void Add_DoesItAdd_ContainsAddition()
         {
             // Arrange

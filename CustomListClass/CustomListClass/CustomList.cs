@@ -114,21 +114,23 @@ namespace CustomListClass
                 index[i] = index[i + 1];
             }
         }
+        
         public override string ToString()
         {
-            string outcome = "";
+            StringBuilder result = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
                 if (i == count - 1)
                 {
-                    outcome += index[i].ToString();
+                    result.Append(index[i]);
                 }
                 else
                 {
-                    outcome += index[i].ToString() + " ";
+                    result.Append(index[i] + " ");
                 }
+                    
             }
-            return outcome;
+            return result.ToString();
         }
         public bool Contains(T toCheck)
         {
@@ -141,35 +143,67 @@ namespace CustomListClass
             }
             return false;
         }
-        public static CustomList<T> operator +(CustomList<T>firstList, CustomList<T>secondList)
+        // alternative working + operator overload with foreach loop
+        //public static CustomList<T> operator +(CustomList<T>firstList, CustomList<T>secondList)
+        //{
+        //    CustomList<T> resultList = new CustomList<T>();
+        //    foreach(T element in firstList)
+        //    {
+        //        resultList.Add(element);
+        //    }
+        //    foreach(T element in secondList)
+        //    {
+        //        resultList.Add(element);
+        //    }
+        //    return resultList;
+        //}
+        public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> resultList = new CustomList<T>();
-            foreach(T element in firstList)
+            for(int i = 0; i < firstList.Count; i ++)
             {
-                resultList.Add(element);
+                resultList.Add(firstList[i]);
             }
-            foreach(T element in secondList)
+            for(int i = 0; i < secondList.Count; i++)
             {
-                resultList.Add(element);
+                resultList.Add(secondList[i]);
             }
             return resultList;
         }
+        // alternative working - operator overload method using foreach loop
+        //public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+        //{
+        //    CustomList<T> resultList = new CustomList<T>();
+        //    foreach (T element in firstList)
+        //    {
+        //        if (secondList.Contains(element))
+        //        {
+        //            continue;
+        //        }
+        //        else
+        //        {
+        //            resultList.Add(element);
+        //        }
+        //    }
+        //    return resultList;
+        //}
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> resultList = new CustomList<T>();
-            foreach (T element in firstList)
+            for(int i = 0; i < firstList.count; i++)
             {
-                if (secondList.Contains(element))
+                if (secondList.Contains(firstList[i]))
                 {
                     continue;
                 }
                 else
                 {
-                    resultList.Add(element);
-                }
+                    resultList.Add(firstList[i]);
+                }                
             }
             return resultList;
         }
+
         public CustomList<T> Zip(CustomList<T> ZipCombiner)
         {
             CustomList<T> zippedTogether = new CustomList<T>();

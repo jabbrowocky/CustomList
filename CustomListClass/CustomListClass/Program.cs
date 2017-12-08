@@ -10,8 +10,11 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            
-            
+
+            CustomList<string> firstList = new CustomList<string>() { "cheese", "foo", "dog" };
+            CustomList<string> secondList = new CustomList<string>() { "foo", "dog", "this", "stuff" };
+            Console.WriteLine(firstList-secondList);
+            Console.ReadKey();
         
         }   
     }
