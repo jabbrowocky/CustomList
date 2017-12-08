@@ -106,6 +106,24 @@ namespace CustomListClass
             }
             return false;
         }
+        public bool RemoveRange(int firstIndexNumber, int secondIndexNumber)
+        {
+            if ((firstIndexNumber > secondIndexNumber) || (secondIndexNumber >= count))
+            {
+                return false;
+            }
+            else
+            {
+                ShiftRange(firstIndexNumber, secondIndexNumber);
+                count -= (secondIndexNumber - (firstIndexNumber+1));
+                return true; 
+            }
+            
+        }
+        private void ShiftRange(int firstIndexNumber, int secondIndexNumber)
+        {
+            index[firstIndexNumber+1] = index[secondIndexNumber];
+        }
         
         private void ShiftValues(int indexNumber)
         {
@@ -169,7 +187,7 @@ namespace CustomListClass
                 resultList.Add(secondList[i]);
             }
             return resultList;
-        }
+        }        
         // alternative working - operator overload method using foreach loop
         //public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         //{
@@ -230,5 +248,6 @@ namespace CustomListClass
                 return zipCount;
             }
         }
+       
     }
 }

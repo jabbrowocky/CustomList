@@ -13,9 +13,10 @@ namespace CustomListClass
 
             CustomList<string> firstList = new CustomList<string>() { "cheese", "foo", "dog" };
             CustomList<string> secondList = new CustomList<string>() { "foo", "dog", "this", "stuff" };
-            Console.WriteLine(firstList-secondList);
+            secondList.RemoveRange(-1, 3);
+            Console.WriteLine(secondList.Count);
+            Console.WriteLine(secondList);
             Console.ReadKey();
-        
         }   
     }
 }
