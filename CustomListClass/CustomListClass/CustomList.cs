@@ -95,7 +95,18 @@ namespace CustomListClass
                 }                
             }
             return false;
-        }       
+        }
+        public bool RemoveAt(int indexNumber)
+        {
+            if (!(indexNumber > count))
+            {
+                ShiftValues(indexNumber);
+                count--;
+                return true;
+            }
+            return false;
+        }
+        
         private void ShiftValues(int indexNumber)
         {
             for (int i = indexNumber; i < count; i ++ )

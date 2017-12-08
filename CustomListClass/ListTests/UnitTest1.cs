@@ -469,6 +469,29 @@ namespace ListTests
             //Assert
             Assert.IsTrue(sentence == "Hello world I'm John what's up?");
         }
-        
+        //RemoveAt method tests
+        [TestMethod]
+        public void RemoveAt_RemovingIntFromList_CountIsCorrect()
+        {
+            //arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            //act
+            firstHalf.RemoveAt(2);
+            //Assert
+            Assert.AreEqual(firstHalf.Count, 2);
+
+        }
+        [TestMethod]
+        public void RemoveAt_RemovingIntFromList_ExpectedIndex()
+        {
+            //arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            //act
+            firstHalf.RemoveAt(1);
+            //Assert
+            Assert.AreEqual(firstHalf[1], 3);
+
+        }
+
     }
 }

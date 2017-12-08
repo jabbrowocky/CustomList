@@ -10,12 +10,16 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            CustomList<int> list1 = new CustomList<int>() { 1, 2, 3, 4 };
-            Console.WriteLine(list1);
+            
+            //arrange
+            CustomList<int> firstHalf = new CustomList<int>() { 1, 2, 3 };
+            //act
+            firstHalf.RemoveAt(1);
+            //Assert
+            Console.WriteLine(firstHalf);
+            Console.WriteLine(firstHalf.Count);
             Console.ReadKey();
-            List<int> list2 = new List<int>() { 1, 2, 3, 4 };
-            Console.WriteLine(list2);
-            Console.ReadKey();
-        }
+        
+        }   
     }
 }
