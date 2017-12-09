@@ -65,14 +65,15 @@ namespace CustomListClass
         {
             return this.GetEnumerator();
         }
-        public void Add(T toAdd)
+        public bool Add(T toAdd)
         {
             if (count > (capacity / 2))
             {
                 IncreaseInternalArraySize();
             }
             index[count] = toAdd;
-            count++;        
+            count++;
+            return true;        
         }
         private void IncreaseInternalArraySize()
         {
@@ -98,13 +99,20 @@ namespace CustomListClass
         }
         public bool RemoveAt(int indexNumber)
         {
-            if (!(indexNumber > count))
+            if (!(indexNumber >= count))
             {
                 ShiftValues(indexNumber);
                 count--;
                 return true;
             }
             return false;
+        }
+        private void ShiftValues(int indexNumber)
+        {
+            for (int i = indexNumber; i < count; i++)
+            {
+                index[i] = index[i + 1];
+            }
         }
         public bool RemoveRange(int firstIndexNumber, int secondIndexNumber)
         {
@@ -115,23 +123,23 @@ namespace CustomListClass
             else
             {
                 ShiftRange(firstIndexNumber, secondIndexNumber);
-                count -= (secondIndexNumber - (firstIndexNumber+1));
-                return true; 
+                count -= (secondIndexNumber - (firstIndexNumber));
             }
-            
+            return true;
+
         }
         private void ShiftRange(int firstIndexNumber, int secondIndexNumber)
         {
-            index[firstIndexNumber+1] = index[secondIndexNumber];
+
+            for (int i = secondIndexNumber; i < firstIndexNumber; i--)
+            {
+
+                index[secondIndexNumber - 1] = index[secondIndexNumber];
+            }
+            
         }
         
-        private void ShiftValues(int indexNumber)
-        {
-            for (int i = indexNumber; i < count; i ++ )
-            {
-                index[i] = index[i + 1];
-            }
-        }
+        
         
         public override string ToString()
         {

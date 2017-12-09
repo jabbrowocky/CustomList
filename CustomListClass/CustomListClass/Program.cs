@@ -11,12 +11,13 @@ namespace CustomListClass
         static void Main(string[] args)
         {
 
-            CustomList<string> firstList = new CustomList<string>() { "cheese", "foo", "dog" };
+            CustomList<string> firstList = new CustomList<string>() { "dog", "foo", "young" };
             CustomList<string> secondList = new CustomList<string>() { "foo", "dog", "this", "stuff" };
-            secondList.RemoveRange(-1, 3);
-            Console.WriteLine(secondList.Count);
+
+            secondList.RemoveRange(0, 2);
             Console.WriteLine(secondList);
             Console.ReadKey();
+
         }   
     }
 }
