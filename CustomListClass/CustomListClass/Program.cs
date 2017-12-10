@@ -12,9 +12,9 @@ namespace CustomListClass
         {
 
             CustomList<string> firstList = new CustomList<string>() { "dog", "foo", "young" };
-            CustomList<string> secondList = new CustomList<string>() { "foo", "dog", "this", "stuff" };
+            CustomList<string> secondList = new CustomList<string>() { "foo", "dog", "this", "stuff","dog","troll","mayne" };
 
-            secondList.RemoveRange(0, 2);
+            secondList.RemoveRange(1,5);
             Console.WriteLine(secondList);
             Console.ReadKey();
 

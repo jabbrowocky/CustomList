@@ -114,33 +114,9 @@ namespace CustomListClass
                 index[i] = index[i + 1];
             }
         }
-        public bool RemoveRange(int firstIndexNumber, int secondIndexNumber)
-        {
-            if ((firstIndexNumber > secondIndexNumber) || (secondIndexNumber >= count))
-            {
-                return false;
-            }
-            else
-            {
-                ShiftRange(firstIndexNumber, secondIndexNumber);
-                count -= (secondIndexNumber - (firstIndexNumber));
-            }
-            return true;
+             
 
-        }
-        private void ShiftRange(int firstIndexNumber, int secondIndexNumber)
-        {
 
-            for (int i = secondIndexNumber; i < firstIndexNumber; i--)
-            {
-
-                index[secondIndexNumber - 1] = index[secondIndexNumber];
-            }
-            
-        }
-        
-        
-        
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
